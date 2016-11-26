@@ -1,0 +1,40 @@
+body{
+	font-size: 16px;
+}
+h1{
+	font-size: 3em;
+	color: #fff;
+}
+.security-form{
+	margin-top: 140px;
+	text-align: center;
+    border: 2px solid #fff;
+	background: rgba(54, 25, 25, .5);
+}
+.security-form .block-head{
+    background-color: #000;
+    opacity: 0.70;
+    border: 2px solid #fff;
+}
+.security-form .block-head h2{
+	font-size: 2em;
+	color: #fff;
+}
+.security-form .label-class{
+	font-size: 1.5em;
+	width: 100%;
+	color: #000;
+}
+.security-form .field-class{
+	width: 90%;
+	color: #000;
+	margin-bottom: 10px;
+}
+
+.security-form .submit-button{
+	opacity: 1;
+	width: 90%;
+	color: #fff;
+	background-color: #000;
+	margin-bottom: 10px;
+}
