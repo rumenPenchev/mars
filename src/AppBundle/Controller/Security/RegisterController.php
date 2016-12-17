@@ -1,13 +1,15 @@
 <?php
-// src/AppBundle/Controller/RegisterController.php
-namespace AppBundle\Controller;
+// src/AppBundle/Controller/Security/RegisterController.php
+namespace AppBundle\Controller\Security;
 
 use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
+use AppBundle\Helpers\MakeColonyController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+
 
 class RegisterController extends Controller
 {
@@ -36,16 +38,21 @@ class RegisterController extends Controller
 
             $token = new UsernamePasswordToken($user, null, 'login', array('ROLE_USER'));
             $this->get('security.token_storage')->setToken($token);
-    
-            // ... do any other work - like sending them an email, etc
-            // maybe set a "flash" success message for the user
 
-            return $this->redirectToRoute('home');
+            $user = $this->get('security.token_storage')->getToken()->getUser();            
+            
+            $colony = $this->get('app.colonyCreator');
+            $colony->newColony($user->getId());
+            $setAssets = $this->get('app.setAssets');
+            $setAssets->newUsetAssets($user->getId());
+
+
+            return $this->redirectToRoute('colony');
         }
 
         return $this->render(
             'security/register.html.twig',
-            array('form' => $form->createView())
+            array('form' => $form->createView(), 'action'=>'REGISTER')
         );
     }
 }

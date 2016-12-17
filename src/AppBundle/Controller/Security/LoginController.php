@@ -1,7 +1,7 @@
 <?php
 // src/AppBundle/Controller/LoginController.php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Security;
 
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -24,6 +24,7 @@ class LoginController extends Controller
         'last_username' => $lastUsername,
         'error'         => $error,
         'action'	    => 'Log in',
+        'no_account'    => 'You have no MARS account?'
     ));
     }
 

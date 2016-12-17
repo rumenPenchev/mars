@@ -1,0 +1,23 @@
+ {# app/Resources/views/assets/resource.html.twig #}
+    {% block body %}
+        <div class="new-army-res">
+            <input type="hidden" name="army_id" value="{{ armyId }}">
+        <table class="resource">
+            {% for asset in assets %}
+                <tr>
+                    <td>
+                        <h2>Resource: {{ asset.name }}</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Enter Qtty
+                        <input type="text" name="res[{{ asset.id }}]" value="{{ asset.qtty }}" size="3">
+                        pcs.
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        </div>
+        <button onclick="makeNewArmy()">Confirm</button>
+	{% endblock %}

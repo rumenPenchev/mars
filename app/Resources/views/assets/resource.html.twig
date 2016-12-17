@@ -1,0 +1,64 @@
+ {# app/Resources/views/assets/resource.html.twig #}
+    {% block body %}
+        <h1>Resource: {{ asset.name }}</h1>
+        <table class="resource">
+
+            {% if (asset.level) > (-1) %}
+                <tr><td class="center"><h2>Level {{ asset.level + 1 }}</h2></td></tr>
+            {% endif %}
+
+            <tr><td class="center"><h2> Costs </h2></td></tr>
+            <tr>
+                <td class="center">
+                    <table style="width: 100%; border: none">
+                        {% for key, cost in asset.costs  %}
+                            <tr>
+                            <td style="border: none">{{ key }}</td>
+                            <td style="border: none">{{ cost }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+            </tr>
+            <tr><td class="center">Time {{ asset.time|number_format(2, '.', ',') }}</td></tr>
+
+        {% if -1 == asset.level %}
+            {% if asset.production != 'auto' %}
+                <tr><td class="center">
+                        Order of
+                        <input type="text" size="3" id="in_production">
+                        <button onclick="newOrder('{{ asset.id }}')">Send Order</button>
+                    </td></tr>
+            {% endif %}
+        {% else %}
+            <tr><td class="center"><button onclick="newLevel('{{ asset.id }}')">New Level</button></td></tr>
+        {% endif %}
+
+        {% if enemy != null %}
+            {% if -1 == asset.level %}
+                <tr>
+                    <td class="center">
+                        <h2> Send some to {{ enemy }} </h2>
+                        <input type="hidden" id="to_id" value="{{ enemy }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center">
+                        Qtty
+                        <input type="text" size="3" id="qtty-to-send">
+                        <button onclick="send('{{ asset.id }}')">Send <span id="send_to"></span></button>
+                    </td>
+                </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td class="center">
+                    <h2> To give some to {{ enemy }} </h2>
+                </td>
+            </tr>
+            <tr><td class="center">select recipient on the map</td></tr>
+        {% endif %}
+
+
+        </table>
+	{% endblock %}

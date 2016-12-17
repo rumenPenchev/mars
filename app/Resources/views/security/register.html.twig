@@ -2,12 +2,37 @@
 {% extends 'base.html.twig' %}
     {% block body %}
 	{{ form_start(form) }}
-	    {{ form_row(form.username) }}
-	    {{ form_row(form.email) }}
-	    {{ form_row(form.plainPassword.first) }}
-	    {{ form_row(form.plainPassword.second) }}
 
-	    <button type="submit">Register!</button>
+	    <div class="row">
+	        <div class="col-sm-4 hidden-xs"></div>
+	            <div class="col-sm-4">
+	                <div class="security-form">
+	                    <div class="block-head">
+	                       <h2>{{ action }}</h2>
+	                    </div>
+					    <div class = "label-class"> {{ form_label(form.username) }} </div>
+   							{{ form_errors(form.username) }}
+    						{{ form_widget(form.username) }}
+
+    					<div class = "label-class"> {{ form_label(form.email) }} </div>
+    					{{ form_errors(form.email) }}
+    					{{ form_widget(form.email) }}
+
+					 
+    					<div class = "label-class"> {{ form_label(form.plainPassword.first) }} </div>
+    					{{ form_errors(form.plainPassword.first) }}
+    					{{ form_widget(form.plainPassword.first) }}
+
+    					<div class = "label-class"> {{ form_label(form.plainPassword.second) }} </div>
+    					{{ form_errors(form.plainPassword.second) }}
+    					{{ form_widget(form.plainPassword.second) }}
+
+						{{ form_row(form.register) }}
+
+					</div>
+				</div>
+			</div>
+		</div>			    
 	{{ form_end(form) }}
 
 {% endblock %}

@@ -1,0 +1,91 @@
+ {# app/Resources/views/security/register.html.twig #}
+{% extends 'home.html.twig' %}
+
+    {% block body %}
+
+        <div class="row mapper">
+            <h1 id="main-h" > MISSION COMMAND CENTER </h1>
+            <div class="separator-10"></div>
+
+            <div class="col-sm-4">
+                <div class="posts">
+                    <h3>COMMUNICATION BOARD:</h3>
+                    {{ render(controller('AppBundle:Comunication/Comunication:cominicate')) }}
+                </div>
+
+            </div>
+
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="col-xs-12  enemy">
+                        <span>Enemy selected: </span><span id="enemy"> </span>
+                    </div>
+                </div>
+                <svg class="center-block" width="400" height="200"  style="border-style:solid;border-width:1px;"
+                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+                    <svg viewBox="0 0 900 450">
+                        <g id="g_id" transform="scale(1)">
+                            <image id="map" x="0" y="0" height="450" width="900" xlink:href="{{ asset('images/maps/marssurface.svg') }}"/>
+                            <a xlink:href="#">
+                                <title>ME</title>
+                                <circle cx="{{ me[0].x }}" cy="{{ me[0].y }}" r="6" stroke="red" stroke-width="4" fill="yellow" />
+                            </a>
+                            {% for colony in colonies %}
+                                <a xlink:href="#" onclick="map.setEnemy({{ colony.userId }}); return null">
+                                    <title>ENEMY {{ colony.userId }}</title>
+                                    <circle cx="{{ colony.x }}" cy="{{ colony.y }}" r="6" stroke="red" stroke-width="3" fill="red" />
+                                </a>
+                            {% endfor %}
+                        </g>
+                    </svg>
+                </svg>
+                <div class="map-nav">
+                    <button onclick="map.zoomIn()"><span class="glyphicon glyphicon-plus"></span></button>
+                    <button onclick="map.zoomOut()"><span class="glyphicon glyphicon-minus"></span></button>
+                    <button onclick="map.toLeft()"><span class="glyphicon glyphicon-arrow-left"></span></button>
+                    <button onclick="map.toRight()"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                    <button onclick="map.toUp()"><span class="glyphicon glyphicon-arrow-up"></span></button>
+                    <button onclick="map.toDown()"><span class="glyphicon glyphicon-arrow-down"></span></button>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div id="assets" class="assets">
+                    {{ render(controller('AppBundle:Assets/Assets:show')) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row resource-planning">
+            <h2>Resource Planning</h2>
+            {{ render(controller('AppBundle:Assets/ERP:index')) }}
+        </div>
+
+        <div class="row armies">
+            <h2>Army & Wars</h2>
+            <div id="army-field">
+                {{ render(controller('AppBundle:Army/Armies:index')) }}
+            </div>
+        </div>
+
+	{% endblock %}
+
+    {% block js %}
+        {{ parent() }}
+        <script type="text/javascript">  var path = "{{ path('well') }}"; </script>
+        <script type="text/javascript">  var assets_path = "{{ path('assets') }}"; </script>
+        <script type="text/javascript">  var order_path = "{{ path('order') }}"; </script>
+        <script type="text/javascript">  var level_path = "{{ path('level') }}"; </script>
+        <script type="text/javascript">  var send_path = "{{ path('send') }}"; </script>
+        <script type="text/javascript">  var mes_send_path = "{{ path('send_message') }}"; </script>
+        <script type="text/javascript">  var mes_read_path = "{{ path('read_messages') }}"; </script>
+        <script type="text/javascript">  var new_army_path = "{{ path('make_new_army') }}"; </script>
+        <script type="text/javascript">  var army_field_path = "{{ path('army-field') }}"; </script>
+        <script type="text/javascript">  var war_path = "{{ path('war') }}"; </script>
+
+		<script src="{{ asset('js/assets.js') }}"></script>
+        <script src="{{ asset('js/map_nav.js') }}"></script>
+        <script src="{{ asset('js/modal_window.js') }}"></script>
+        <script src="{{ asset('js/resource.js') }}"></script>
+        <script src="{{ asset('js/comunication.js') }}"></script>
+        <script src="{{ asset('js/army.js') }}"></script>
+    {% endblock %}

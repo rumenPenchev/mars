@@ -1,0 +1,44 @@
+ {# app/Resources/views/assets/army.html.twig #}
+    {% block body %}
+        <button style="float: right" onclick="prepArmyRes('{{ path('newArmy') }}',0)">Make New Army</button>
+        <table class="list">
+            <thead>
+            <tr>
+                <td>
+                    Army Number
+                </td>
+                <td>
+                    Actions
+                </td>
+                <td>
+                    Enemy
+                </td>
+                <td>
+                    Confirm
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for army in armies %}
+                <tr>
+                    <td>{{ army.id }}</td>
+                    <td>
+                        <button onclick="prepArmyRes('{{ path('newArmy') }}','{{ army.id }}')">Change Resources</button>
+                        <button onclick="disbandingArmy('{{ path('disband') }}','{{ army.id }}')">Disbanding Army</button>
+                    </td>
+                    <td>
+                        {% if army.targetId %}
+                            ENEMY {{ army.targetId }}
+                        {% else %}
+                            No enemy.
+                         {% endif %}
+                        <button onclick="setArmyTarget('{{ path('set_target') }}','{{ army.id }}')"><span id="army-enemy"> Set ... As Target</span></button>
+                    </td>
+                    <td>
+                        <button onclick="startWar('{{ path('send_on_war') }}','{{ army.id }}')">Start War</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+	{% endblock %}

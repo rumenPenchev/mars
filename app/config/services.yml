@@ -4,6 +4,38 @@ parameters:
 #    parameter_name: value
 
 services:
+  app.colonyCreator:
+        class:        AppBundle\Helpers\MakeColony
+        arguments: [ "@doctrine.orm.entity_manager" ]
+
+  app.getEnemies:
+         class:        AppBundle\Helpers\GetEnemies
+         arguments: [ "@doctrine.orm.entity_manager" ]
+
+  app.setAssets:
+         class:        AppBundle\Helpers\SetAssets
+         arguments: [ "@doctrine.orm.entity_manager" ]
+
+  app.addAssets:
+         class:        AppBundle\Helpers\AddAssets
+         arguments: [ "@doctrine.orm.entity_manager" ]
+
+  app.getResources:
+         class:        AppBundle\Helpers\GetResources
+         arguments: [ "@doctrine.orm.entity_manager" ]
+
+  app.GetArmies:
+         class:        AppBundle\Helpers\GetArmies
+         arguments: [ "@doctrine.orm.entity_manager" ]
+
+  app.calculateDistTime:
+         class:        AppBundle\Helpers\CalculateDistTime
+         arguments: [ "@doctrine.orm.entity_manager" ]
+
+  app.war:
+         class:        AppBundle\Helpers\War
+         arguments: [ "@doctrine.orm.entity_manager" ]
+
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

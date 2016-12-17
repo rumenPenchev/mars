@@ -1,0 +1,8 @@
+    {% block body %}
+        {% for message in messages %}
+            <div style="width: 100%"></div>
+                <a href="#" onclick="newFromList('ENEMY {{ message.senderId }}')"> ENEMY {{ message.senderId }}:</a>
+                {{ message.message }}
+            </div>
+        {% endfor %}
+    {% endblock %}

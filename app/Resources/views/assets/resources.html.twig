@@ -1,0 +1,8 @@
+ {# app/Resources/views/assets/resources.html.twig #}
+    {% block body %}
+        <div class="row">
+            {% for asset in assets %}
+                <div class="col-sm-4"><button onclick="resPlaning('{{ url('resource',{id:asset.id }) }}' )" style="width: 100%">{{ asset.name }}</button></div>
+            {% endfor %}
+        </div>
+	{% endblock %}

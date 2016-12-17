@@ -1,0 +1,19 @@
+ {# app/Resources/views/assets/assets.html.twig #}
+    {% block body %}
+        <table class="list">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Qtty</td>
+                    <td>Level</td>
+                </tr>
+            </thead>
+            {% for asset in assets %}
+                <tr>
+                    <td>{{ asset.name }}</td>
+                    <td>{{ asset.qtty|number_format(0, '.', ' ') }}</td>
+                    <td>{{ asset.level }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+	{% endblock %}

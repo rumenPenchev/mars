@@ -1,0 +1,232 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * Asset
+ *
+ * @ORM\Table(name="assets")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\AssetRepository")
+ */
+class Asset
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="descr_id", type="integer")
+     */
+    private $descrId;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="level", type="integer", nullable=true, options={"default" : Null})
+     */
+    private $level;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="in_prod_since", type="datetime", nullable=true, options={"default" : Null})
+     */
+    private $inProdSince;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="qtty", type="integer")
+     */
+    private $qtty;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="in_production", type="integer")
+     */
+    private $inProduction;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="user_id", type="integer")
+     */
+    private $userId;
+
+    /**
+     * @var Asset_descr
+     *
+     * @ORM\ManyToOne(targetEntity="Asset_descr", inversedBy="asset")
+     * @ORM\JoinColumn(name="descr_id", referencedColumnName="id")
+     */
+    private $asset_descr;
+
+    public function __construct()
+    {
+        $this->asset_descr = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set descrId
+     *
+     * @param integer $descrId
+     *
+     * @return Assets
+     */
+    public function setDescrId($descrId)
+    {
+        $this->descrId = $descrId;
+
+        return $this;
+    }
+
+    /**
+     * Get descrId
+     *
+     * @return int
+     */
+    public function getDescrId()
+    {
+        return $this->descrId;
+    }
+
+    /**
+     * Set level
+     *
+     * @param integer $level
+     *
+     * @return Assets
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return int
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * Set inProdSince
+     *
+     * @param \DateTime $inProdSince
+     *
+     * @return Assets
+     */
+    public function setInProdSince($inProdSince)
+    {
+        $this->inProdSince = $inProdSince;
+
+        return $this;
+    }
+
+    /**
+     * Get inProdSince
+     *
+     * @return \DateTime
+     */
+    public function getInProdSince()
+    {
+        return $this->inProdSince;
+    }
+
+    /**
+     * Set assetsDescr
+     *
+     * @param \AppBundle\Entity\Asset_descr $assetDescr
+     *
+     * @return Assets
+     */
+    public function setAssetDescr(\AppBundle\Entity\Asset_descr $assetDescr = null)
+    {
+        $this->asset_descr = $assetDescr;
+
+        return $this;
+    }
+
+    /**
+     * Get assetDescr
+     *
+     * @return \AppBundle\Entity\Asset_descr
+     */
+    public function getAssetDescr()
+    {
+        return $this->asset_descr;
+    }
+
+    /**
+     * Set qtty
+     *
+     * @param integer $qtty
+     *
+     * @return Asset
+     */
+    public function setQtty($qtty)
+    {
+        $this->qtty = $qtty;
+
+        return $this;
+    }
+
+    /**
+     * Get qtty
+     *
+     * @return integer
+     */
+    public function getQtty()
+    {
+        return $this->qtty;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return Asset
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+}

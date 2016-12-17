@@ -6,7 +6,7 @@ h1{
 	color: #fff;
 }
 .security-form{
-	margin-top: 140px;
+	margin-top: 100px;
 	text-align: center;
     border: 2px solid #fff;
 	background: rgba(54, 25, 25, .5);
@@ -23,7 +23,7 @@ h1{
 .security-form .label-class{
 	font-size: 1.5em;
 	width: 100%;
-	color: #000;
+	color: #7d7777;
 }
 .security-form .field-class{
 	width: 90%;
@@ -36,5 +36,12 @@ h1{
 	width: 90%;
 	color: #fff;
 	background-color: #000;
+	margin-bottom: 10px;
+}
+.white-button{
+	opacity: 1;
+	width: 90%;
+	color: #000;
+	background-color: #fff;
 	margin-bottom: 10px;
 }
